@@ -1,69 +1,60 @@
 
-/* ===== Part A: 배열 4개 ===== */
+/* ===== Part A : 배열 4개 ===== */
 
-// 내 인생 영화 5편 + 박스오피스 TOP 5
+// 테스트용 가상 데이터입니다.
 const titles = [
-  "인셉션",
   "인터스텔라",
-  "건국전쟁",
+  "인셉션",
+  "쇼생크 탈출",
   "기생충",
   "파이트 클럽",
-  "극장판 치이카와: 인어 섬의 비밀",
-  "실낙원",
-  "암살자(들)",
-  "클레이페이스",
-  "베러티"
+  "가상의 영화 A",
+  "가상의 영화 B",
+  "가상의 영화 C",
+  "가상의 영화 D",
+  "가상의 영화 E"
 ];
 
-// TMDB vote_average
-// 박스오피스 영화 5편의 0은 임시값이며 실제 TMDB 매칭 후 수정
-const ratings = [
-  8.4, 8.5, 7.9, 8.5, 8.4,
-  0, 0, 0, 0, 0
-];
+const ratings = [8.7, 8.4, 9.3, 8.5, 8.8, 7.8, 7.2, 8.1, 6.9, 7.5];
 
-const years = [
-  2010, 2014, 2024, 2019, 1999,
-  2026, 2026, 2026, 2026, 2026
-];
+const years = [2014, 2010, 1994, 2019, 1999, 2026, 2026, 2025, 2024, 2023];
 
-// 내 인생 영화는 0, 박스오피스는 KOBIS 누적 관객 수
 const audiences = [
   0, 0, 0, 0, 0,
-  1927843, 38169, 3306269, 28907, 8777
+  2345678, 1800000, 1250000, 870000, 540000
 ];
 
-/* ===== Part B: 영화 객체 10건 ===== */
 
-// Part A와 같은 순서로 작성
+/* ===== Part B : 영화 객체 10건 ===== */
+
 const movies = [
+  {
+    title: "인터스텔라",
+    year: 2014,
+    date: "2014-11-06",
+    rating: 8.7,
+    audience: 0,
+    poster: null,
+    type: "mine",
+    rank: null
+  },
   {
     title: "인셉션",
     year: 2010,
     date: "2010-07-15",
     rating: 8.4,
     audience: 0,
-    poster: "/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+    poster: null,
     type: "mine",
     rank: null
   },
   {
-    title: "인터스텔라",
-    year: 2014,
-    date: "2014-11-06",
-    rating: 8.5,
+    title: "쇼생크 탈출",
+    year: 1994,
+    date: "1994-09-23",
+    rating: 9.3,
     audience: 0,
-    poster: "/gDN2NWtHbs8ZWEBQM8Dh5OVXdb4.jpg",
-    type: "mine",
-    rank: null
-  },
-  {
-    title: "건국전쟁",
-    year: 2024,
-    date: "2024-02-01",
-    rating: 7.9,
-    audience: 0,
-    poster: "/qWAXjBXLxKXYQ3KeH1gf3thdxUS.jpg",
+    poster: null,
     type: "mine",
     rank: null
   },
@@ -73,7 +64,7 @@ const movies = [
     date: "2019-05-30",
     rating: 8.5,
     audience: 0,
-    poster: "/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg",
+    poster: null,
     type: "mine",
     rank: null
   },
@@ -81,58 +72,58 @@ const movies = [
     title: "파이트 클럽",
     year: 1999,
     date: "1999-10-15",
-    rating: 8.4,
+    rating: 8.8,
     audience: 0,
-    poster: "/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+    poster: null,
     type: "mine",
     rank: null
   },
   {
-    title: "극장판 치이카와: 인어 섬의 비밀",
+    title: "가상의 영화 A",
     year: 2026,
     date: "2026-09-30",
-    rating: 0,
-    audience: 1927843,
+    rating: 7.8,
+    audience: 2345678,
     poster: null,
     type: "boxoffice",
     rank: 1
   },
   {
-    title: "실낙원",
+    title: "가상의 영화 B",
     year: 2026,
-    date: "2026-10-21",
-    rating: 0,
-    audience: 38169,
+    date: "2026-08-20",
+    rating: 7.2,
+    audience: 1800000,
     poster: null,
     type: "boxoffice",
     rank: 2
   },
   {
-    title: "암살자(들)",
-    year: 2026,
-    date: "2026-09-23",
-    rating: 0,
-    audience: 3306269,
-    poster: "/c55ijsOdntj6P25vDwHLdgsBpmV.jpg",
+    title: "가상의 영화 C",
+    year: 2025,
+    date: "2025-12-10",
+    rating: 8.1,
+    audience: 1250000,
+    poster: null,
     type: "boxoffice",
     rank: 3
   },
   {
-    title: "클레이페이스",
-    year: 2026,
-    date: "2026-10-21",
-    rating: 0,
-    audience: 28907,
+    title: "가상의 영화 D",
+    year: 2024,
+    date: "2024-05-12",
+    rating: 6.9,
+    audience: 870000,
     poster: null,
     type: "boxoffice",
     rank: 4
   },
   {
-    title: "베러티",
-    year: 2026,
-    date: "2026-10-22",
-    rating: 0,
-    audience: 8777,
+    title: "가상의 영화 E",
+    year: 2023,
+    date: "2023-11-01",
+    rating: 7.5,
+    audience: 540000,
     poster: null,
     type: "boxoffice",
     rank: 5
