@@ -1,8 +1,3 @@
-
-/* =========================================
-   Part A : 배열과 반복문
-   ========================================= */
-
 // A1 : 배열 ⇒ 평균 평점
 let sumA = 0;
 
@@ -78,11 +73,6 @@ for (let i = 0; i < audiences.length; i++) {
 
 console.log("A5 관객 100만 이상:", bigA.trim() || "없음");
 
-
-/* =========================================
-   Part B : 함수 7개
-   ========================================= */
-
 // average : 영화 배열 ⇒ 평균 평점
 function average(list) {
   if (list.length === 0) return 0;
@@ -150,11 +140,6 @@ function yearsSince(dateStr) {
   return new Date().getFullYear() - date.getFullYear();
 }
 
-
-/* =========================================
-   Part B : 페이지 요약 3줄
-   ========================================= */
-
 const bestMovie = best(movies);
 const topAudience = sortBy(movies, "audience", true)[0];
 
@@ -163,11 +148,6 @@ document.getElementById("out").textContent = [
   `최고 평점 영화: ${bestMovie.title} (${bestMovie.rating.toFixed(1)}점, 개봉한 지 ${yearsSince(bestMovie.date)}년)`,
   `관객 1위: ${topAudience.title} (누적 ${formatNumber(topAudience.audience)}명)`
 ].join("\n");
-
-
-/* =========================================
-   Part C : TMDB 응답 처리
-   ========================================= */
 
 // getList : TMDB 응답 객체 ⇒ 영화 배열
 function getList(data) {
@@ -218,11 +198,6 @@ if (tmdbMovies.length > 0) {
     "검색 결과:", search(tmdbMovies, keywordC).length
   );
 }
-
-
-/* =========================================
-   자가 테스트 : 1~8
-   ========================================= */
 
 console.log("TEST 1:", formatNumber("1234567"));
 console.log("TEST 2:", average(movies).toFixed(1));
