@@ -1,4 +1,3 @@
-// A1 : 배열 ⇒ 평균 평점
 let sumA = 0;
 
 for (let i = 0; i < ratings.length; i++) {
@@ -7,7 +6,6 @@ for (let i = 0; i < ratings.length; i++) {
 
 console.log("A1 평균 평점:", sumA / ratings.length);
 
-// A2 : 배열 ⇒ 최고 평점 영화 제목과 평점
 let maxA = 0;
 
 for (let i = 1; i < ratings.length; i++) {
@@ -18,7 +16,6 @@ for (let i = 1; i < ratings.length; i++) {
 
 console.log("A2 최고 평점:", titles[maxA], ratings[maxA]);
 
-// A3 : 배열 ⇒ 8점 이상인 영화 수
 let countA = 0;
 
 for (let i = 0; i < ratings.length; i++) {
@@ -29,7 +26,6 @@ for (let i = 0; i < ratings.length; i++) {
 
 console.log("A3 8점 이상:", countA + "편");
 
-// A4 : 연도 배열 ⇒ 연도대별 영화 수
 let count2020A = 0;
 let count2010A = 0;
 let count2000A = 0;
@@ -62,7 +58,6 @@ console.log(
   `그 이전 ${countBeforeA}편`
 );
 
-// A5 : 배열 ⇒ 누적 관객 100만 명 이상인 영화
 let bigA = "";
 
 for (let i = 0; i < audiences.length; i++) {
@@ -73,13 +68,11 @@ for (let i = 0; i < audiences.length; i++) {
 
 console.log("A5 관객 100만 이상:", bigA.trim() || "없음");
 
-// average : 영화 배열 ⇒ 평균 평점
 function average(list) {
   if (list.length === 0) return 0;
   return averageBy(list, "rating");
 }
 
-// best : 영화 배열 ⇒ 최고 평점 영화 객체
 function best(list) {
   if (list.length === 0) return null;
 
@@ -94,12 +87,10 @@ function best(list) {
   return bestMovie;
 }
 
-// filterByRating : 영화 배열, 최소 평점 ⇒ 새 배열
 function filterByRating(list, min) {
   return list.filter(movie => movie.rating >= min);
 }
 
-// sortBy : 영화 배열, 속성 이름, 내림차순 여부 ⇒ 새 배열
 function sortBy(list, key, desc) {
   const sign = desc ? -1 : 1;
 
@@ -120,7 +111,6 @@ function sortBy(list, key, desc) {
   });
 }
 
-// search : 영화 배열, 검색어 ⇒ 제목 부분 일치 배열
 function search(list, keyword) {
   const normalizedKeyword = keyword.trim().toLowerCase();
 
@@ -129,7 +119,6 @@ function search(list, keyword) {
   );
 }
 
-// formatNumber : 숫자 또는 숫자 문자열 ⇒ 천 단위 쉼표 문자열
 function formatNumber(n) {
   return Number(n).toLocaleString("ko-KR");
 }
@@ -149,12 +138,10 @@ document.getElementById("out").textContent = [
   `관객 1위: ${topAudience.title} (누적 ${formatNumber(topAudience.audience)}명)`
 ].join("\n");
 
-// getList : TMDB 응답 객체 ⇒ 영화 배열
 function getList(data) {
   return data.results;
 }
 
-// averageBy : 객체 배열, 속성 이름 ⇒ 해당 값의 평균
 function averageBy(list, key) {
   if (list.length === 0) return 0;
 
@@ -167,7 +154,6 @@ function averageBy(list, key) {
   return sum / list.length;
 }
 
-// C1 : 응답 페이지 및 영화 수
 const tmdbMovies = getList(TMDB);
 
 console.log(
@@ -177,19 +163,16 @@ console.log(
   "이번 응답:", tmdbMovies.length
 );
 
-// C2 : TMDB 평점 평균
 console.log(
   "C2 상영작 평균 평점:",
   averageBy(tmdbMovies, "vote_average").toFixed(1)
 );
 
-// C3 : 평점 상위 5편
 console.table(
   sortBy(tmdbMovies, "vote_average", true).slice(0, 5),
   ["title", "release_date", "vote_average"]
 );
 
-// C4 : 실제 응답 안에 존재하는 제목 일부로 검색
 if (tmdbMovies.length > 0) {
   const keywordC = tmdbMovies[0].title.slice(0, 2);
 
