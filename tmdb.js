@@ -1,5 +1,5 @@
 
-// tmdb.js : TMDB now_playing 응답
+// tmdb.js : TMDB 응답 형태의 예시 데이터
 
 const TMDB = {
   dates: {
