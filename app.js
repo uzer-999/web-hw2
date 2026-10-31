@@ -1,5 +1,7 @@
 
-// ===== Part A =====
+// ========================================
+// Part A
+// ========================================
 
 // A1 평균 평점
 
@@ -73,10 +75,10 @@ for (let i = 0; i < years.length; i++) {
 
 console.log(
   "A4 연도대별:",
-  count2020A + "편,",
-  count2010A + "편,",
-  count2000A + "편,",
-  countBeforeA + "편"
+  "2020년대", count2020A + "편,",
+  "2010년대", count2010A + "편,",
+  "2000년대", count2000A + "편,",
+  "1990년대 이하", countBeforeA + "편"
 );
 
 
@@ -101,7 +103,10 @@ if (bigA === "") {
 console.log("A5 관객 100만 이상:", bigA);
 
 
-// ===== Part B =====
+// ========================================
+// Part B
+// ========================================
+
 
 // average : 배열 ⇒ 평균 평점
 
@@ -157,7 +162,7 @@ function sortBy(list, key, desc) {
 }
 
 
-// search : 배열, 검색어 ⇒ 제목이 일치하는 새 배열
+// search : 배열, 검색어 ⇒ 제목 검색
 
 function search(list, keyword) {
   const normalizedKeyword = keyword.trim().toLowerCase();
@@ -168,14 +173,14 @@ function search(list, keyword) {
 }
 
 
-// formatNumber : 숫자 또는 숫자 문자열 ⇒ 천 단위 구분 문자열
+// formatNumber : 숫자 ⇒ 천 단위 구분 문자열
 
 function formatNumber(n) {
   return Number(n).toLocaleString("ko-KR");
 }
 
 
-// yearsSince : 날짜 문자열 ⇒ 올해까지 지난 연수
+// yearsSince : 날짜 문자열 ⇒ 지난 연수
 
 function yearsSince(dateStr) {
   const date = new Date(dateStr + "T00:00:00");
@@ -185,7 +190,43 @@ function yearsSince(dateStr) {
 }
 
 
+// ========================================
+// BONUS 1 : reduce로 평균 계산
+// ========================================
+
+function averageBy(list, key) {
+  if (list.length === 0) return 0;
+
+  const sum = list.reduce((total, movie) => {
+    return total + Number(movie[key]);
+  }, 0);
+
+  return sum / list.length;
+}
+
+
+// ========================================
+// BONUS 2 : 날짜에 요일 표시
+// ========================================
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr + "T00:00:00");
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
+
+  const weekday = weekdays[date.getDay()];
+
+  return `${year}년 ${month}월 ${day}일 (${weekday})`;
+}
+
+
+// ========================================
 // Part B 결과 출력
+// ========================================
 
 const bestMovie = best(movies);
 
@@ -197,7 +238,10 @@ document.getElementById("out").textContent =
   `관객 1위: ${topAudience.title} (누적 ${formatNumber(topAudience.audience)}명)`;
 
 
-// ===== Part C =====
+// ========================================
+// Part C
+// ========================================
+
 
 // getList : TMDB 응답 객체 ⇒ 영화 배열
 
@@ -206,22 +250,7 @@ function getList(data) {
 }
 
 
-// averageBy : 배열, 키 이름 ⇒ 해당 속성의 평균
-
-function averageBy(list, key) {
-  if (list.length === 0) return 0;
-
-  let sum = 0;
-
-  for (let i = 0; i < list.length; i++) {
-    sum += Number(list[i][key]);
-  }
-
-  return sum / list.length;
-}
-
-
-// C1 TMDB 응답 정보와 이번 응답의 영화 수
+// C1 TMDB 응답 정보
 
 console.log(
   "C1 페이지:", TMDB.page,
@@ -257,7 +286,11 @@ console.log(
 );
 
 
-// ===== 자가 테스트 =====
+// ========================================
+// 자가 테스트
+// ========================================
+
+console.log("===== 자가 테스트 =====");
 
 console.log("TEST 1:", formatNumber("1234567"));
 
@@ -276,6 +309,9 @@ console.log("TEST 6:", search(movies, " 인터 ").length);
 
 console.log("TEST 7:", yearsSince("2014-11-06"));
 
+
+// 원본 배열 불변 확인
+
 const firstTitleBeforeSort = movies[0].title;
 
 sortBy(movies, "rating", true);
@@ -284,3 +320,51 @@ console.log(
   "TEST 8:",
   movies[0].title === firstTitleBeforeSort
 );
+
+
+// BONUS TEST 1 : reduce 평균
+
+console.log(
+  "BONUS TEST 1 (reduce 평균):",
+  averageBy(movies, "rating").toFixed(1)
+);
+
+
+// BONUS TEST 2 : 요일 표시
+
+console.log(
+  "BONUS TEST 2 (날짜):",
+  formatDate("2014-11-06")
+);
+
+
+// ========================================
+// BONUS 3 : fetch로 JSON 읽기
+// ========================================
+
+fetch("./tmdb.json")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("JSON 파일을 읽을 수 없습니다.");
+    }
+
+    return response.json();
+  })
+  .then(data => {
+    const jsonMovies = getList(data);
+
+    console.log(
+      "BONUS TEST 3 (JSON 영화 수):",
+      jsonMovies.length
+    );
+
+    console.log("BONUS JSON 평점 상위 5편:");
+
+    console.table(
+      sortBy(jsonMovies, "vote_average", true).slice(0, 5),
+      ["title", "release_date", "vote_average"]
+    );
+  })
+  .catch(error => {
+    console.error("BONUS JSON 오류:", error);
+  });
