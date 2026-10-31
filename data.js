@@ -1,18 +1,14 @@
-
-/* ===== Part A : 배열 4개 ===== */
-
-// 테스트용 가상 데이터입니다.
 const titles = [
   "인터스텔라",
   "인셉션",
   "쇼생크 탈출",
   "기생충",
   "파이트 클럽",
-  "가상의 영화 A",
-  "가상의 영화 B",
-  "가상의 영화 C",
-  "가상의 영화 D",
-  "가상의 영화 E"
+  "영화 A",
+  "영화 B",
+  "영화 C",
+  "영화 D",
+  "영화 E"
 ];
 
 const ratings = [8.7, 8.4, 9.3, 8.5, 8.8, 7.8, 7.2, 8.1, 6.9, 7.5];
@@ -23,9 +19,6 @@ const audiences = [
   0, 0, 0, 0, 0,
   2345678, 1800000, 1250000, 870000, 540000
 ];
-
-
-/* ===== Part B : 영화 객체 10건 ===== */
 
 const movies = [
   {
@@ -79,7 +72,7 @@ const movies = [
     rank: null
   },
   {
-    title: "가상의 영화 A",
+    title: "영화 A",
     year: 2026,
     date: "2026-09-30",
     rating: 7.8,
@@ -89,7 +82,7 @@ const movies = [
     rank: 1
   },
   {
-    title: "가상의 영화 B",
+    title: "영화 B",
     year: 2026,
     date: "2026-08-20",
     rating: 7.2,
@@ -99,7 +92,7 @@ const movies = [
     rank: 2
   },
   {
-    title: "가상의 영화 C",
+    title: "영화 C",
     year: 2025,
     date: "2025-12-10",
     rating: 8.1,
@@ -109,7 +102,7 @@ const movies = [
     rank: 3
   },
   {
-    title: "가상의 영화 D",
+    title: "영화 D",
     year: 2024,
     date: "2024-05-12",
     rating: 6.9,
@@ -119,7 +112,7 @@ const movies = [
     rank: 4
   },
   {
-    title: "가상의 영화 E",
+    title: "영화 E",
     year: 2023,
     date: "2023-11-01",
     rating: 7.5,
