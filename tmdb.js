@@ -1,9 +1,14 @@
+
+// tmdb.js : TMDB now_playing 응답
+
 const TMDB = {
   dates: {
     maximum: "2026-10-28",
     minimum: "2026-09-10"
   },
+
   page: 1,
+
   results: [
     {
       title: "상영작 A",
@@ -46,6 +51,7 @@ const TMDB = {
       poster_path: null
     }
   ],
+
   total_pages: 1,
   total_results: 5
 };
